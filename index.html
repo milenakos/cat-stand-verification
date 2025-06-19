@@ -8,12 +8,12 @@
         import('https://metrics.minkos.lol/web/v3/7fQGEwMSWiHEEQb9Xaqi')
             .then(FingerprintJS => FingerprintJS.load({endpoint: ["https://metrics.minkos.lol", FingerprintJS.defaultEndpoint]}))
             .then(fp => fp.get())
-            .then(document.getElementById('main').innerHTML = '<h1>Thanks!</h1>You can now close this tab.');
+            .then(document.body.innerHTML = '<center><h1>Thanks!</h1>You can now close this tab.</center>');
     </script>
 </head>
 
 <body>
-    <center id="main">
+    <center>
         Please wait...
     </center>
 </body>
