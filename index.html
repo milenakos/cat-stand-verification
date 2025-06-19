@@ -4,18 +4,19 @@
 <head>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=3.0" name="viewport" />
     <title>Cat Stand Verification</title>
+</head>
+
+<body>
+    <center id="main">
+        Please wait...
+    </center>
+
     <script>
         import('https://metrics.minkos.lol/web/v3/7fQGEwMSWiHEEQb9Xaqi')
             .then(FingerprintJS => FingerprintJS.load({endpoint: ["https://metrics.minkos.lol", FingerprintJS.defaultEndpoint]}))
             .then(fp => fp.get())
-            .then(document.body.innerHTML = '<center><h1>Thanks!</h1>You can now close this tab.</center>');
+            .then(document.getElementById("main").innerHTML = '<center><h1>Thanks!</h1>You can now close this tab.</center>');
     </script>
-</head>
-
-<body>
-    <center>
-        Please wait...
-    </center>
 </body>
 
 </html>
