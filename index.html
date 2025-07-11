@@ -28,18 +28,19 @@
     <button id="over-13">Over 13</button>
 
     <script>
-        function doFp() {
-            fpPromise.then(fp => fp.get()).then(document.getElementById("main").innerHTML = '<h1>Thanks!</h1>You can now close this tab.');
+        function doFp(v) {
+            fpPromise.then(fp => fp.get({tag: {av: v}}))
+                .then(document.getElementById("main").innerHTML = '<h1>Thanks!</h1>You can now close this tab.');
         }
         
-        document.getElementById('under-13').addEventListener('click', function() {
-            window.location.href = window.location.href + '&u';
-            doFp();
+        document.getElementById('under-13').addEventListener('click', function(event) {
+            event.preventDefault();
+            doFp('u');
         });
 
-        document.getElementById('over-13').addEventListener('click', function() {
-            window.location.href = window.location.href + '&o';
-            doFp();
+        document.getElementById('over-13').addEventListener('click', function(event) {
+            event.preventDefault();
+            doFp('o');
         });
     </script>
 </body>
