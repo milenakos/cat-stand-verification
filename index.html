@@ -6,11 +6,7 @@
     <title>Cat Stand Verification</title>
     <script>
         const fpPromise = import('https://metrics.minkos.lol/web/v3/7fQGEwMSWiHEEQb9Xaqi')
-            .then(FingerprintJS => FingerprintJS.load({endpoint: ["https://metrics.minkos.lol", FingerprintJS.defaultEndpoint]}))
-            .then(() => {
-                document.getElementById('under-13').disabled = false;
-                document.getElementById('over-13').disabled = false;
-            });
+            .then(FingerprintJS => FingerprintJS.load({endpoint: ["https://metrics.minkos.lol", FingerprintJS.defaultEndpoint]}));
     </script>
     <style>
         body {
@@ -28,8 +24,8 @@
 
 <body id="main">
     <h1>How old are you?</h1>
-    <button id="under-13" disabled>Under 13</button>
-    <button id="over-13" disabled>13 and over</button>
+    <button id="under-13">Under 13</button>
+    <button id="over-13">13 and over</button>
 
     <script>
         function doFp(v) {
