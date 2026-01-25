@@ -28,13 +28,19 @@
 
 <body id="main">
     <h1>How old are you?</h1>
-    <button id="under-13">Under 13</button>
-    <button id="over-13">13 and over</button>
+    <form id="age-form">
+        <input type="radio" id="under-13" name="age" value="u">
+        <label for="under-13">Under 13</label><br>
+        
+        <input type="radio" id="over-13" name="age" value="o">
+        <label for="over-13">13 and over</label><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
 
     <script>
         function disableButtons() {
-            document.getElementById('under-13').disabled = true;
-            document.getElementById('over-13').disabled = true;
+            document.querySelector('button[type="submit"]').disabled = true;
         }
 
         function doFp(v) {
@@ -45,14 +51,12 @@
                 });
         }
         
-        document.getElementById('under-13').addEventListener('click', function(event) {
+        document.getElementById('age-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            doFp('u');
-        });
-
-        document.getElementById('over-13').addEventListener('click', function(event) {
-            event.preventDefault();
-            doFp('o');
+            const selectedValue = document.querySelector('input[name="age"]:checked');
+            if (selectedValue) {
+                doFp(selectedValue.value);
+            }
         });
     </script>
 </body>
