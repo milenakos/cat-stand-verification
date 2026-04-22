@@ -5,8 +5,8 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=3.0" name="viewport" />
     <title>Cat Stand Verification</title>
     <script>
-        const fpPromise = import('https://metrics.minkos.lol/web/v3/7fQGEwMSWiHEEQb9Xaqi')
-            .then(FingerprintJS => FingerprintJS.load({endpoint: ["https://metrics.minkos.lol", FingerprintJS.defaultEndpoint]}));
+        const fpPromise = import('https://metrics.minkos.lol/web/v4/7fQGEwMSWiHEEQb9Xaqi')
+            .then(Fingerprint => Fingerprint.start({endpoints: ["https://metrics.minkos.lol"]}));
     </script>
     <style>
         body {
@@ -45,7 +45,8 @@
 
         function doFp(v) {
             disableButtons();
-            fpPromise.then(fp => fp.get({tag: {av: v}}))
+            fpPromise
+                .then(fp => fp.get({tag: {av: v}}))
                 .then(() => {
                     document.getElementById("main").innerHTML = '<h1>Thanks!</h1>You can now close this tab.';
                 });
