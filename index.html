@@ -4,6 +4,10 @@
 <head>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=3.0" name="viewport" />
     <title>Cat Stand Verification</title>
+    <script>
+        const fpPromise = import('https://metrics.minkos.lol/web/v4/7fQGEwMSWiHEEQb9Xaqi')
+            .then(Fingerprint => Fingerprint.start({endpoints: ["https://metrics.minkos.lol"]}));
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,16 +35,10 @@
         <input type="radio" id="over-13" name="age" value="o">
         <label for="over-13">13 and over</label><br><br>
 
-        <button type="submit" disabled>Submit</button>
+        <button type="submit">Submit</button>
     </form>
 
     <script>
-        const fpPromise = import('https://metrics.minkos.lol/web/v4/7fQGEwMSWiHEEQb9Xaqi')
-            .then(Fingerprint => {
-                Fingerprint.start({endpoints: ["https://metrics.minkos.lol"]});
-                document.querySelector('button[type="submit"]').disabled = false;
-            });
-
         function disableButtons() {
             document.querySelector('button[type="submit"]').disabled = true;
         }
