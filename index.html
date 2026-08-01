@@ -12,12 +12,45 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 50px;
+            margin-top: 80px;
+            font-size: 22px;
+        }
+        h1 {
+            font-size: 42px;
+            margin-bottom: 40px;
+        }
+        .option {
+            display: block;
+            width: 320px;
+            margin: 20px auto;
+            padding: 22px 30px;
+            font-size: 24px;
+            border: 3px solid #ccc;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+            user-select: none;
+        }
+        .option:hover {
+            border-color: #2f6fed;
+        }
+        .option input {
+            display: none;
+        }
+        .option.selected {
+            background-color: #2f6fed;
+            border-color: #2f6fed;
+            color: #fff;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 10px;
+            padding: 16px 40px;
+            font-size: 24px;
+            margin-top: 30px;
+            border-radius: 12px;
+            border: none;
+            background-color: #2f6fed;
+            color: #fff;
+            cursor: pointer;
         }
         button:disabled {
             opacity: 0.5;
@@ -29,16 +62,29 @@
 <body id="main">
     <h1>How old are you?</h1>
     <form id="age-form">
-        <input type="radio" id="under-13" name="age" value="u">
-        <label for="under-13">Under 13</label><br>
-        
-        <input type="radio" id="over-13" name="age" value="o">
-        <label for="over-13">13 and over</label><br><br>
+        <label class="option" for="under-13">
+            <input type="radio" id="under-13" name="age" value="u">
+            Under 13
+        </label>
+
+        <label class="option" for="over-13">
+            <input type="radio" id="over-13" name="age" value="o">
+            13 and over
+        </label>
 
         <button type="submit">Submit</button>
     </form>
 
     <script>
+        document.querySelectorAll('.option input').forEach(function(input) {
+            input.addEventListener('change', function() {
+                document.querySelectorAll('.option').forEach(function(label) {
+                    label.classList.remove('selected');
+                });
+                input.closest('.option').classList.add('selected');
+            });
+        });
+
         function disableButtons() {
             document.querySelector('button[type="submit"]').disabled = true;
         }
@@ -51,7 +97,7 @@
                     document.getElementById("main").innerHTML = '<h1>Thanks!</h1>You can now close this tab.';
                 });
         }
-        
+
         document.getElementById('age-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const selectedValue = document.querySelector('input[name="age"]:checked');
